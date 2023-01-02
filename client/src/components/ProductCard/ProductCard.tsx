@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { IProductResponse, Size } from '../../models/IProduct';
 import { useDispatch } from 'react-redux';
 import classes from './productCard.module.scss';
-import classNames from 'classnames';
 import {AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai';
 import { FaShoppingCart } from 'react-icons/fa';
 import { addItem, minusItem, removeItem } from '../../store/slices/cartSlice';
@@ -17,11 +16,6 @@ interface PizzaBlockProps {
   product: IProductResponse;
   types: number[];
 };
-
-interface InfoForCalcBasket {
-    crust: string,
-    price: number,
-}
 
 
 const ProductCard: FC<PizzaBlockProps> = ({product, types }) => {
@@ -37,14 +31,11 @@ const ProductCard: FC<PizzaBlockProps> = ({product, types }) => {
     
     const productType =  product.category === 'pizza' ? typeNames[isSelectedCrust] : '';
     const cartItem = items.find((item) =>  {
-        //const productType = product.category === 'pizza' ? typeNames[isSelectedCrust] : '';
         return item.id === product._id && item.size === isSelectedSize.size && item.type === productType    
     });
 
     const countItem = cartItem ? cartItem.count : 0;
 
-
-   // const [itemCount, setItemCount] = useState(0);
     const onClickAddItem = () => {
        
         const item = {
@@ -120,14 +111,6 @@ const ProductCard: FC<PizzaBlockProps> = ({product, types }) => {
                 <div className={classes.product__card__details__info}>
                     <div className={classes.sizes} 
                         style={{display: product.category==='pizza'? 'grid':'flex'}}>
-                        {/* <button className={classes.sizes__standart__active}>{toUpperCaseFirstLitter(product.sizes[0].size)}</button>
-                        <button className={classes.sizes__larg}>{toUpperCaseFirstLitter(product.sizes[1].size)}</button> */}
-                        {/* <button 
-                                id='1' 
-                                className={isActiveButton === 1? classes.button__active : classes.button} 
-                                onClick={(e) => handleClick(e, product.sizes[0].price)}>
-                                    {toUpperCaseFirstLitter(product.sizes[0].size)}
-                        </button> */}
                         {product.sizes.map((elem, i) => (
                             <button    
                                 id={`${i}`}
@@ -138,12 +121,6 @@ const ProductCard: FC<PizzaBlockProps> = ({product, types }) => {
                             {toUpperCaseFirstLitter(elem.size)}
                             </button>
                         ))}
-                        {/* {product.sizes[1] && <button id='2' className={isActiveButton === 2? classes.button__active : classes.button} onClick={(e) => handleClick(e, product.sizes[1].price)}>{toUpperCaseFirstLitter(product.sizes[1].size)}</button>} */}
-                        
-                            {/* <Button id = '1' className={'sizes__button'} active={isActiveButton === 1 ? true : false} onClick={handleClick} disabled={false} >{toUpperCaseFirstLitter(product.sizes[0].size)}</Button>
-                            <Button id = '2' className={'sizes__button'} active={isActiveButton === 2 ? true : false} onClick={handleClick } disabled={false} >{toUpperCaseFirstLitter(product.sizes[1].size)}</Button> */}
-                        
-                    
                     </div>
                     {product?.category === 'pizza' && <div className={classes.crust}>
                         <button 
