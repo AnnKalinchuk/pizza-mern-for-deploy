@@ -1,0 +1,29 @@
+@import '../../styles/variables.scss';
+
+.tobedone__wrapper {
+    background-color: #387abd;
+    height: calc(100vh - $headerHeight - $footerHeight);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        text-align: center;
+        color:  white;
+    }
+
+    img {
+        width: 100%;
+        vertical-align: bottom;
+        object-fit: cover;
+    }
+}
+
+@media screen and (min-width: 1023px) {
+    .tobedone__wrapper {
+        height:  calc(100% - $headerHeight - $footerHeight);
+        img {
+            height: 100%;
+        }      
+    }
+}

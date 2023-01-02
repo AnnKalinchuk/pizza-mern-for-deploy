@@ -1,0 +1,27 @@
+@keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+.loading__spinner {
+    width: 100px;
+    height: 100px;
+    border: 8px solid #e5e5e5; /* Light grey #f3f3f3 */
+    border-top: 8px solid #2d3a4c; /* Black #383636 */
+    border-radius: 50%;
+    animation: spinner 1.5s linear infinite;
+}
+
+.spinner__container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      
+      span {
+        margin-bottom: 6px;
+      }
+}

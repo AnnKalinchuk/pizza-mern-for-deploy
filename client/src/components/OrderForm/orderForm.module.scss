@@ -1,0 +1,113 @@
+@import "../../styles/variables.scss";
+
+.order__form {
+    display: flex;
+    justify-content: space-around;
+
+    input {outline: none;}
+    input:-webkit-autofill {
+        -webkit-box-shadow: inset 0 0 0 50px #fff !important;
+    }
+
+    .contacts__wrapper, .address__wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    p {
+        text-align: left;
+        font-size: 12px;
+        color: #bf1650;
+    }
+      
+    p::before {
+        display: inline;
+        content: "⚠ ";
+    }
+
+    label {
+        margin-top: 8px;
+        display: block;
+        font-size: 12px;
+        margin-left: 15px;
+        color: grey;
+    }
+
+    input, textarea {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        border-radius: 15px;
+        border: 1px solid #ced4da;
+        padding: 8px 15px;
+        font-size: 14px;
+        margin-top: 2px;
+
+        &.is_invalid {
+            border-color: $darkred;
+        }
+    }
+    
+    select {
+        &.is_invalid {
+            border-color: $darkred;
+        }
+    }
+
+    section  {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+
+        input {
+            display: inline;
+            width: 90px;
+            margin-right: 1px; 
+
+            &.is_invalid {
+                border-color: $darkred;
+            }
+
+        }
+        
+        label {
+            display: flex;
+            flex-direction: column;
+        }
+        
+    }
+    
+    textarea {
+        resize: none;
+        max-width: 250px;
+        line-height: 1.5;
+
+        &.is_invalid {
+            border-color: $darkred;
+        }
+    }
+
+    .total__price {
+        font-weight: 600;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .btn_wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    input[type='submit'] {
+        width: 200px;
+        
+    }
+
+    span {
+        display: inline-block;
+        margin-top:10px;
+    }
+}

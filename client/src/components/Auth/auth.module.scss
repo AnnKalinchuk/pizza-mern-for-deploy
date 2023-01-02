@@ -1,0 +1,119 @@
+@import "../../styles/variables.scss";
+
+.auth__status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 18px;
+    font-weight: 700;
+    font-size: 24px;
+}
+.auth__form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    .form__wrapper {
+        padding: 0 10px 10px;
+
+        .auth__btn__navigate {
+            margin: 10px auto;
+            display: flex;
+            cursor: pointer;
+            justify-content: center;
+        }
+    }
+
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+      
+    h1 {
+        font-weight: 100;
+        color: white;
+        text-align: center;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgb(79, 98, 148);
+    }
+      
+    .form {
+        background: #0e101c;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+      
+    p {
+        font-size: 12px;
+        color: #bf1650;
+    }
+      
+    p::before {
+        display: inline;
+        content: "⚠ ";
+    }
+      
+    input {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        border-radius: 4px;
+        border: 1px solid $grey;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    input:-webkit-autofill {
+        -webkit-box-shadow: inset 0 0 0 50px #fff!important;
+        box-shadow: inset 0 0 0 50px #fff!important;
+    }
+
+    .is_invalid {
+        border-color: $darkred;
+    }
+      
+    label {
+        line-height: 2;
+        text-align: left;
+        display: block;
+        margin-bottom: 3px;
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 200;
+      }
+      
+    input[type="submit"] {
+        background: $red;
+        color: white;
+        border: none;
+        margin-top: 16px;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: 400;
+        
+    }
+      
+    input[type="submit"]:hover {
+        background-color: $darkred;
+        cursor: pointer;
+    }
+      
+    input[type="button"]:active,
+    input[type="submit"]:active {
+        transition: 0.3s all;
+        transform: translateY(3px);
+        border: 1px solid transparent;
+        opacity: 0.8;
+      }
+      
+    input:disabled {
+        opacity: 0.8;
+        cursor: not-allowed;
+    }
+      
+    input[type="button"]:hover {
+        transition: 0.3s all;
+        background-color: $darkred;
+    }
+    
+}
+

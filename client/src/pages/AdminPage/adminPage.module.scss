@@ -1,0 +1,49 @@
+@import "../../styles/variables.scss";
+
+.admin__wrapper {
+     padding: 0.5em;
+}
+
+.admin__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0 10px;
+}
+
+.product__table__container {
+    overflow-x:auto;
+    background-color: #fff;
+    padding: 8px;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+}
+
+.add_button button{
+    background:#092e72;
+    color: white;
+    cursor: pointer;
+    height: 40px;
+    width: 130px;
+    border-radius: 50px;
+    font-weight: 600;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+        margin-left: 5px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+    .admin__top {
+        flex-direction: column-reverse;
+        align-items: start;
+    }
+
+    .add_button {
+        margin-bottom: 10px;
+    }
+}

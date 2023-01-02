@@ -1,0 +1,55 @@
+@import '../../styles/variables.scss';
+
+.pagination {
+    text-align: right;
+    li {
+        display: inline-block;
+    
+        a {
+          text-align: center;
+          width: 20px;
+          line-height: 18px;
+          height: 20px;
+          border: 1px solid #092e72;
+          border-radius: 30px;
+          margin-right: 10px;
+          cursor: pointer;
+          display: inline-block;
+          color: #092e72;
+    
+          &:hover {
+            background-color: #e9ecef;
+            border-color: #dee2e6;
+          }
+        }
+    }
+    
+    :global {
+        .selected {
+          a {
+            background-color: #092e72;
+            color: #fff;
+          }
+
+          a:hover {
+            background-color: #092e72;
+            color: #fff;
+            border-color: #092e72;
+          }
+        }
+
+        .disabled {
+          a {
+            cursor: not-allowed;
+            color: lightgrey;
+            border-color:lightgrey ;
+            background-color:none;
+
+            &:hover {
+              background-color:white;
+              color: lightgrey;
+            }
+          }
+        }
+    }
+}

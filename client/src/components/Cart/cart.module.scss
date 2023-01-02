@@ -1,0 +1,112 @@
+@import "../../styles/variables.scss";
+
+.cart__shop {
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+        width: 12px; // ширина всей полосы прокрутки 
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $lightgrey; // цвет зоны отслеживания
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $light;    // цвет бегунка 
+        border-radius: 20px;       // округлось бегунка 
+        border: 2px solid $lightgrey;  // отступ вокруг бегунка
+    }
+}
+
+.cart__item {
+    position: relative;
+    margin: 20px 8px 20px 0px;
+
+    button {
+        color: $grey;
+    }
+
+    &__btn__close {
+        position: absolute;
+        right: -1px;
+        top: -5px;
+        width: 30px;
+        height: 30px;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: 1px solid rgba(0,0,0,.08);
+        background: $light;
+        cursor: pointer;
+        color: $grey;
+    }
+    &__content {
+        &__title {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        &__info {
+            font-size: 14px;
+            &__description {
+                margin-bottom: 5px;
+            }
+            &__size_and_type {
+                margin-bottom: 10px;
+
+                span {
+                    font-size: 12px;
+                    margin-right:10px;
+                    font-weight: bold;
+                }
+            }
+        }
+        
+    }
+
+    &__btn__qty_price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .price__block {
+        font-weight: 700;
+
+        span {
+            margin-right: 5px;
+        }
+    }
+
+    .qty {
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+        background: $red;
+        border-radius: 15px;
+        color: $light;
+
+        p {
+            padding: 0 2px;
+        }
+    }
+
+    .qty button {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        background-color: $red;//проверка
+        cursor: pointer;
+        color: $light;
+    }
+}

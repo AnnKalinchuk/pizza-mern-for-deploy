@@ -1,0 +1,24 @@
+@import "../../styles/variables.scss";
+
+.error__page__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    color: $dark;
+
+    h1 {
+        font-size: 13vw;
+    }
+
+    h2 {
+        font-size: 4.5vw;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 3vw;
+    }
+
+}

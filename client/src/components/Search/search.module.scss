@@ -1,0 +1,48 @@
+@import "../../styles/variables.scss";
+
+
+.search__wrapper {
+    position: relative;
+    max-width: 300px;
+}
+
+  
+.input {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 12px 20px;
+    padding-left: 42px;
+    width: 300px;
+    border-radius: 25px;
+    font-size: 16px;
+  
+    &:focus {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+}
+  
+.icon {
+    opacity: 0.3;
+    position: absolute;
+    left: 14px;
+    top: 14px;
+  }
+  
+.clearIcon {
+    width: 18px;
+    height: 18px;
+    opacity: 0.3;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+  
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .input { 
+    width: 290px;
+  }
+}

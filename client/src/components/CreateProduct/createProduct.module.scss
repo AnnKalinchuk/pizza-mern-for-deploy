@@ -1,0 +1,279 @@
+@import "../../styles/variables.scss";
+
+.form__wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 15px 0;
+
+    .btn_back {
+        position: absolute;
+        top:0;
+        left:0;
+        background-color: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        span {
+            margin-top: 3px;
+        }
+    }
+    .form__title {
+        text-align: center;
+        margin-top: 15px;
+    }
+   
+
+    form {
+        display: flex;
+        justify-content: space-around;
+
+        p {
+            text-align: left;
+            font-size: 12px;
+            color: #bf1650;
+        }
+          
+        p::before {
+            display: inline;
+            content: "⚠ ";
+        }
+
+        label {
+            margin-top: 8px;
+            display: block;
+        }
+
+        input {
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            padding: 10px 15px;
+            font-size: 14px;
+            margin-top: 5px;
+
+            &.is_invalid {
+                border-color: $darkred;
+            }
+        }
+        
+        select {
+            &.is_invalid {
+                border-color: $darkred;
+            }
+        }
+
+        section  {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+
+            input {
+                display: inline;
+                width: 90px;
+                margin-right: 1px; 
+
+                &.is_invalid {
+                    border-color: $darkred;
+                }
+
+            }
+            
+            label {
+                display: flex;
+                flex-direction: column;
+            }
+            
+        }
+        
+
+
+        .sizes__wrapper {
+            label {
+                display: flex;
+                justify-content: flex-start;
+                padding-left: 2px;
+
+                span {
+                    width: 90px;
+                }
+            }
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+        }
+
+        .btn_delete {
+            background: white;
+            border: 1px solid #ced4da;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        .btn_add_size {
+            background: white;
+            border: 1px solid #ced4da;
+            border-radius: 11px;
+            width: 140px;
+            display: flex;
+            height: 30px;
+            justify-items: center;
+            align-items: center;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        .custom__input__wrapper {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            cursor: pointer;
+            margin-top: 40px;
+
+            
+            align-items: center;
+            
+            label {
+                cursor: pointer;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                height: 40px;
+                background: white;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+                align-items: center;
+                margin-top: 10px;
+
+                span {
+                    margin-left: 5px;
+                }
+            }
+
+            input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+                padding: 0;
+            }
+        }
+
+        .btn_submit {
+            font-size: 18px;
+            font-weight: 600;
+            color: #f8f8f8;
+        }
+    }
+}
+
+.is_invalid {
+    border-color: $darkred;
+}
+/* .error {
+    border-color: $darkred;
+} */
+
+input[type="submit"] {
+    background: $red;
+    color: white;
+    border: none;
+    margin-top: 16px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 400;
+}
+  
+input[type="submit"]:hover {
+    background-color: $darkred;
+    cursor: pointer;
+}
+  
+input[type="button"]:active,
+input[type="submit"]:active {
+    transition: 0.3s all;
+    transform: translateY(3px);
+    border: 1px solid transparent;
+    opacity: 0.8;
+  }
+
+input[type="button"]:hover {
+    transition: 0.3s all;
+    background-color: $darkred;
+}
+
+input[type="submit"]:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+
+    &:hover {
+        background: $red;
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+@media screen and (min-width: 320px) and (max-width: 560px /* 479px */) {
+    .form__wrapper {
+        margin: 10px 0;
+        align-items: center;
+        justify-content: center;
+        min-width: 300px;
+
+        form {
+            flex-direction: column;
+            margin-top: 5px;
+   
+            .custom__input__wrapper { 
+                flex-direction: row;
+                margin-top: 5px;
+                justify-content: center;
+
+                img {
+                    width: 150px;
+                    margin-right: 20px;
+                }
+            }
+        }
+
+        .form__title {
+            margin-top: 30px;
+        }
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 560px) {
+    .form__wrapper {
+        min-width: 400px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .form__wrapper {
+        align-items: center;
+        justify-content: center;
+
+        form {
+            max-width: 800px;
+
+            .custom__input__wrapper {  
+                margin-right: 150px;
+            }
+        }
+    }
+}

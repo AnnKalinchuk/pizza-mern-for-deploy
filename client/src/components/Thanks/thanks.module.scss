@@ -1,0 +1,92 @@
+.thanks__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    .thanks__container {
+        background: #f8f8f8;
+        border: 1px solid #e5e5e5;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 0 40px rgb(0 0 0 / 40%);
+
+        h2, h3, h4 {
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        .orderInfo {
+            margin: 10px 0;
+
+            div {
+                padding: 2px 0;
+            }
+            span {
+                font-weight: bold;
+            }
+        }
+    }
+
+    .payment {
+        margin-top: 20px;
+        text-align: right;
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        
+        td, th {
+            padding: 8px;
+        }
+    
+        td:first-child {
+            padding: 8px 0;
+        }
+        
+        th {
+            text-align: left;
+            background: #092e72;
+            color: #f8f8f8;
+        }
+        
+       
+    
+        td:not(:first-child) {
+            text-align: center;
+        }
+    
+        tr:nth-child(even){background-color: #eef2f5}
+    
+        .item__type {
+            font-size: 14px;
+        }
+    
+        .item__title {
+            font-weight: 500;
+        }
+    }
+    
+}
+
+
+
+@media screen and (min-width: 320px) and (max-width: 600px) {
+    .thanks__wrapper {
+        padding: 20px 10px;
+
+        .thanks__container {
+            padding: 20px 10px;
+        }
+
+        /* table {
+
+            td:first-child {
+                padding: 8px 0;
+            }
+        } */
+    }
+ }

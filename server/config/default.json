@@ -1,0 +1,5 @@
+{
+    "serverPort" : 5000,
+    "dbUrl": "mongodb+srv://Annushka:qwerty1234@cluster0.6vakpqy.mongodb.net/pizza?retryWrites=true&w=majority",
+    "jwtSecret": "dev-jwt"
+}

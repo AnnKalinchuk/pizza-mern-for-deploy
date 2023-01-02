@@ -1,0 +1,41 @@
+@import-normalize;
+@import "./variables.scss";
+
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+body, html {
+    min-height: 100vh;
+    width: 100%;
+    font-family: $Roboto;
+    background-color: $lightgrey;
+    display: flex;
+}
+
+#root {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+:focus, :active {outline: none;}
+a:focus, a:active {outline: none;}
+a, a:visited {text-decoration: none;}
+a:hover {text-decoration: none;}
+
+.active {
+    cursor: pointer;
+    font-weight: bold;
+    color: $light;
+}
+
+
+
+

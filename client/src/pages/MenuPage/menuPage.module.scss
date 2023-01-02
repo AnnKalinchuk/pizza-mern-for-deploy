@@ -1,0 +1,61 @@
+@import "../../styles/variables.scss";
+
+.menu__page {
+    position: relative;
+    padding: 20px 0;
+}
+
+/* .mobile__cart {
+    position: fixed;
+    bottom:40px;
+    left:10px;
+    z-index: 10;
+    border-radius: 25px;
+    -webkit-box-shadow: 0 0 15px #000;
+    box-shadow: 0 0 15px #000;
+
+    height: 50px;
+
+    &__icon__wrap {
+        background: $red;
+        border-radius: 50%;
+        width: 46px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+
+        color: $light;
+    }
+
+    &__price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: $grey;
+        margin: 0 16px;
+    }
+
+    &__button {
+        background: $light;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        height: 50px;
+        padding: 2px;
+        border-radius: 25px;
+        font-weight: 700;
+
+        &.disabled {
+            display: none;
+        }
+    }
+}
+
+@media screen and (min-width: 699px) {
+    .mobile__cart {
+                display: none;   
+    }
+} */

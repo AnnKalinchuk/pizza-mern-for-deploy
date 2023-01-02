@@ -1,0 +1,12 @@
+.product__card__list__inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px,  320px  /*1fr*/));
+    gap: 20px 20px;
+    justify-content: center;
+}
+
+@media screen and (min-width: 1500px) {
+    .product__card__list__inner {
+        grid-template-columns: repeat(4, minmax(270px, 330px));
+    }
+}

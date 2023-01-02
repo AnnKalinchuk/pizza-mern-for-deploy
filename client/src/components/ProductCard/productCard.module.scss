@@ -1,0 +1,196 @@
+@import "../../styles/variables.scss";
+
+.product__card {
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    padding: 10px;
+    position: relative;
+    -webkit-box-shadow: 0 0 15px rgb(0 0 0 / 10%);
+    box-shadow: 0 0 15pxrgba(0,0,0,.1);
+
+    &__image__block {
+        height: 144px;
+        min-height: 144px;
+        position: relative;
+        max-height:  176px;
+        height: 100%;
+        width: 100%;
+        
+        .image {
+           img {
+            max-height: 176px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+           }
+        };
+        .weight {
+            height: 22px;
+            width: 49px;
+            justify-content: center;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            font-weight: 600;
+            background: rgba(0,0,0,.24);
+            font-size: 11px;
+            border-radius: 11px;
+            padding: 5px;
+            color: #fff;
+            letter-spacing: .05em;
+        }     
+    }
+
+    &__description {
+        margin: 0 0 0 10px;
+        flex: 1 1 auto;
+
+        .title {
+            margin-top: 15px;
+        }
+
+        .title__text {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: .05em;
+            text-decoration: none;
+            color: $dark;
+        }
+
+        .description {
+            font-size: 12px;
+            margin-top: 15px;
+        }
+        
+    }
+
+    &__details {
+
+        &__info {
+            display: flex;
+            flex-direction: column;
+            -ms-flex-direction: column;
+            width: 100%;
+            margin-top: 15px;
+
+            .sizes, .crust {
+                height: 100%;
+                display: flex;
+                display: -ms-flexbox;
+                border-radius: 15px;
+                margin-top: 10px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;  
+            }
+
+            .sizes {
+                background-color: #f8f8f8;
+                display: flex;
+            }
+
+            button {
+                cursor: pointer;
+                flex-grow: 1;
+                border-radius: 15px;
+                padding: 0;
+                margin: 0;
+                height: 30px;
+                border: none;
+                background-color: #f8f8f8;
+            }
+
+            .button__active {
+                background-color: #4f4f4f;
+                color: #f8f8f8;
+                box-shadow: 0px 0 2px 0px #C0C0C0;
+            }
+        }  
+    }
+
+    &__price__row {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0 0 10px;
+        align-items: center;
+    }
+
+    .price__block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+        font-weight: bold;
+        color: $dark;
+    }
+
+    &__btn__wrap {
+        width: 54%;
+    }
+
+    &__btn__wrap button{
+        border-radius: 15px;
+        height: 50px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+        font-weight: 700;
+        background-color: $red;
+        color: $light;
+
+        &:hover {
+            background-color: $darkred;
+        }
+    }
+
+    &__quantity {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 15px;
+        background-color: $light;
+
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                background-color: #fff;
+            }
+        }
+       
+        &__count {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgb(79, 79, 79);
+            font-size: 18px;
+            font-weight: 700;
+            margin: 8px;
+        }
+
+        button {
+            border:1px solid rgba(0, 0, 0, 0.08);
+            background-color: $light;
+            color: rgb(79, 79, 79);
+        
+        }
+    }
+}
+
+.product__card:hover {
+    -webkit-box-shadow: 0 0 15px rgb(0 0 0 / 50%);
+    box-shadow: 0 0 15px rgb(0 0 0 / 50%);
+
+    img {
+        -webkit-transform: scale(1.01);
+        -ms-transform: scale(1.01);
+        transform: scale(1.01);
+    }
+}
