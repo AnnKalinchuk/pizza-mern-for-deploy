@@ -1,20 +1,27 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .footer {
-    background-color: $dark;
-    padding: 0 1.5em;
-    width: 100%;
-    height: $footerHeight;
+  background-color: $dark;
+  padding: 0 1.5em;
+  width: 100%;
+  height: $footerHeight;
 
+  &__content {
+    color: $light;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 10px 0;
+  }
+}
+
+@media screen and (min-width: 280px) and (max-width: 460px) {
+  .footer {
     &__content {
-        color: $light;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 100%;
-        padding: 10px 0;
-
+      flex-direction: column;
+      font-size: 12px;
     }
-
+  }
 }
