@@ -19,6 +19,8 @@ import imageReader from "../../utils/imageReader";
 import classes from "./editProduct.module.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getDownloadURL, ref } from "@firebase/storage";
+import storage from "../../firebase";
 
 interface IEditProductFormState {
   title: string;
@@ -33,6 +35,7 @@ const EditProduct: FC = () => {
   const navigate = useNavigate();
   //const serverApi = process.env.REACT_APP_SERVER_API;
   const serverApi = "http://localhost:5000";
+  const [downloadUrlForFirebase, setDownloadUrlForFirebase] = useState('');
 
   const { isLoading, data: productById } = useGetProductByIdQuery(
     id ? id : skipToken
@@ -47,7 +50,7 @@ const EditProduct: FC = () => {
       title: Yup.string()
         .required("Title is required")
         .min(3, "Title must be at least 3 characters")
-        .max(30, "Title must not exceed 30 characters"),
+        .max(35, "Title must not exceed 30 characters"),
       description: Yup.string()
         .required("Description is required")
         .min(6, "Description must be at least 6 characters")
@@ -122,7 +125,6 @@ const EditProduct: FC = () => {
     try {
       if (id) {
         const response = await updateProduct({ id, formData }).unwrap();
-        console.log(response);
         toast.success(response.message);
       }
     } catch (e: any) {
@@ -152,6 +154,7 @@ const EditProduct: FC = () => {
   const onPictureChange = useCallback(
     async (event: React.ChangeEvent<HTMLInputElement>) => {
       if (event.target.files?.[0]) {
+        
         const file = event.target.files?.[0];
         const pictureReader = await imageReader(file);
         setImagePreview(pictureReader as string);
@@ -163,15 +166,28 @@ const EditProduct: FC = () => {
   );
 
   useEffect(() => {
-    /*   if(!isLoading && productById ) {
-        setImagePreview(`${serverApi}${productById?.imgUrl.replace('/uploads', 'uploads/')}`); 
-      } */
+      if(productById) {
+        const fileName = productById.imgUrl.match(/\/([^\/]+)$/);
+    
+        if(fileName) {
+          const imageUrl = `images/${fileName[1]}`;
+          const storageRef = ref(storage, imageUrl);
+       
+    
+        getDownloadURL(storageRef)
+          .then((url) => {
+            setDownloadUrlForFirebase(url);
+          })
+          .catch((error) => {
+            console.error('Error getting download URL:', error);
+          });
+        }  }
     if (!isLoading && productById) {
       setImagePreview(
-        `${serverApi}${productById?.imgUrl.replace("uploads\\", "/uploads/")}`
+        `${downloadUrlForFirebase}`
       );
     }
-  }, [productById, isLoading]);
+  }, [productById, isLoading, downloadUrlForFirebase]);
 
   return (
     <div className={classes.form__wrapper}>
@@ -197,8 +213,10 @@ const EditProduct: FC = () => {
               ) : (
                 <img src={defaultImg} width="200px" />
               )}
-
-              {imagePreview ? (
+              <label htmlFor='file' ><BiCloudUpload size='1.5em'/><span>{
+            imagePreview? imageName : 'Choose file' 
+          }</span></label>
+            {/*   {imagePreview ? (
                 <label htmlFor="file">
                   <span>{imageName}</span>
                 </label>
@@ -207,7 +225,7 @@ const EditProduct: FC = () => {
                   <BiCloudUpload size="1.5em" />
                   <span>Choose file</span>
                 </label>
-              )}
+              )} */}
               <input
                 {...registerParams}
                 type="file"

@@ -4,6 +4,10 @@ const config = require('config')
 const authRouter = require('./routes/authRoutes')
 const productRoutes = require('./routes/productRoutes')
 
+//firebase
+const uploadFileMiddleware = require('./middleware/uploadFileMiddleware');
+//
+
 const app = express()
 const PORT = config.get('serverPort')
 
@@ -12,9 +16,9 @@ const corsMiddleware = require('./middleware/corsMiddleware')
 app.use(corsMiddleware)
 app.use(express.json())
 
-app.use('/uploads', express.static('uploads'))
+//app.use('/uploads', express.static('uploads'))
 app.use('/api/auth', authRouter)
-app.use('/api/products', productRoutes)
+app.use('/api/products',/* uploadFileMiddleware, */productRoutes)
 
 
 const start = async () => {    

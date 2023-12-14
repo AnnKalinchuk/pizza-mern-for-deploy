@@ -1,6 +1,6 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import classes from './productTable.module.scss';
-import { useTable } from 'react-table';
+import { Column, useTable } from 'react-table';
 import { COLUMNS } from '../../utils/columns';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import { FaRegEye } from 'react-icons/fa';
@@ -10,13 +10,16 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
+import { getDownloadURL, ref } from '@firebase/storage';
+import storage from '../../firebase';
 
 const ProductTable: FC<any> = ({productsData}) => {
+
 
     const [removeProduct ] = useRemoveProductMutation();
     const navigate = useNavigate();
 
-    const columns = useMemo(() => COLUMNS, [COLUMNS])
+    const columns =  useMemo(() => COLUMNS, [COLUMNS])
     const data = useMemo(() => productsData, [productsData])
 
     const {
@@ -46,6 +49,7 @@ const ProductTable: FC<any> = ({productsData}) => {
         navigate(`/editor/${id}`)
     };
 
+
     return (
       <>
         <table {...getTableProps()} className={classes.table}>
@@ -69,6 +73,8 @@ const ProductTable: FC<any> = ({productsData}) => {
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map(cell => {
+
+                  
                   return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 })}
                 <td>

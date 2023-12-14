@@ -6,6 +6,15 @@
     position: relative;
     margin: 15px 0;
 
+    button.handleClickFirebase {
+        width: 100px;
+        height: 50px;
+        border: 1px solid;
+        cursor: pointer;
+        border-radius: 10px;
+        background: lightsalmon;
+    }
+
     .btn_back {
         position: absolute;
         top:0;

@@ -12,6 +12,9 @@ import { TiArrowBack } from 'react-icons/ti';
 import defaultImg from '../../assets/images/preview_img2.jpg';
 import imageReader from '../../utils/imageReader';
 
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import storage from '../../firebase';
+
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -95,7 +98,7 @@ const CreateProduct: FC = () => {
     const onSubmit = (data: ICreateProductFormState) => {
         const formData = new FormData();
         const sizesArr = data.sizes;
-
+       
         formData.append("image", data.image[0]);
         formData.append("title", data.title);
         formData.append("description", data.description);
@@ -136,6 +139,7 @@ const CreateProduct: FC = () => {
       }
     }, []);
 
+
     return (
       <div className={classes.form__wrapper}>
         <button className={classes.btn_back} onClick={()=> navigate('/admin')}>
@@ -165,6 +169,7 @@ const CreateProduct: FC = () => {
               }} />
         </div>
         <div>{errors.image && <p>{errors.image?.message || "Error"}</p>}</div>
+      
           </div>
           <div>
             <label>Title

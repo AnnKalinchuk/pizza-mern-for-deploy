@@ -10,6 +10,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { toUpperCaseFirstLitter } from "../../utils/toUpperCaseFirstLitter";
 
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import storage  from '../../firebase';
+
 const typeNames = ["Standard crust", "Philadelphia"];
 
 interface PizzaBlockProps {
@@ -20,6 +23,8 @@ interface PizzaBlockProps {
 const ProductCard: FC<PizzaBlockProps> = ({ product, types }) => {
   //const serverApi = process.env.REACT_APP_SERVER_API;
   const serverApi = "http://localhost:5000";
+  const [downloadUrlForFirebase, setDownloadUrlForFirebase] = useState('');
+
   const dispatch = useDispatch();
 
   const [totalCostItem, setTotalCostItem] = useState(0);
@@ -29,8 +34,9 @@ const ProductCard: FC<PizzaBlockProps> = ({ product, types }) => {
   const [isActiveButtonCrust, setIsActiveButtonCrust] = useState(0);
   const { items, totalPrice } = useSelector((state: RootState) => state.cart);
 
-  const productType =
-    product.category === "pizza" ? typeNames[isSelectedCrust] : "";
+  
+
+  const productType = product.category === "pizza" ? typeNames[isSelectedCrust] : "";
   const cartItem = items.find((item) => {
     return (
       item.id === product._id &&
@@ -88,21 +94,32 @@ const ProductCard: FC<PizzaBlockProps> = ({ product, types }) => {
     calcTotalPrice();
   }, [totalCostItem, isSelectedSize, isSelectedCrust]);
 
+  useEffect(() => {
+    if(product) {
+    const fileName = product.imgUrl.match(/\/([^\/]+)$/);
+
+    if(fileName) {
+      const imageUrl = `images/${fileName[1]}`;
+      const storageRef = ref(storage, imageUrl);
+   
+   
+
+    getDownloadURL(storageRef)
+      .then((url) => {
+        setDownloadUrlForFirebase(url);
+      })
+      .catch((error) => {
+        console.error('Error getting download URL:', error);
+      });
+    }  }
+  }, [product]);
+
   return (
     <div className={classes.product__card}>
       <div className={classes.product__card__image__block}>
         <div className={classes.image}>
-          {/*    <img
-            src={`${serverApi}${product.imgUrl.replace(
-              "/uploads/",
-              "uploads/"
-            )}`}
-          /> */}
-          <img
-            src={`${serverApi}${product.imgUrl.replace(
-              "uploads\\",
-              "/uploads/"
-            )}`}
+           <img
+            src={downloadUrlForFirebase}
           />
         </div>
         <div className={classes.weight}>
