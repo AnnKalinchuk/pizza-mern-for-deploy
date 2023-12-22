@@ -1,18 +1,18 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const config = require('config')
+//const config = require('config')
 const authRouter = require('./routes/authRoutes')
 const productRoutes = require('./routes/productRoutes')
 
 require('dotenv').config();
-const dbUrl = process.env.MONGODB_URI;
+const dbUrl = process.env.MONGODB_URI //|| config.get('dbUrl');;
 
 //firebase
 const uploadFileMiddleware = require('./middleware/uploadFileMiddleware');
 //
 
 const app = express()
-const PORT = process.env.PORT || config.get('serverPort')
+const PORT = process.env.PORT //|| config.get('serverPort')
 
 const corsMiddleware = require('./middleware/corsMiddleware')
 
