@@ -7,7 +7,7 @@ import { RootState } from "../store";
 export const productsApi = createApi({
     reducerPath: 'productsApi',
     baseQuery: fetchBaseQuery({ 
-      baseUrl: 'http://localhost:5000/api/',
+      baseUrl: 'https://pizza-mern-for-deploy.vercel.app/api',
    /*  refetchOnFocus: true, */
       prepareHeaders: (headers, { getState }) => {
         const token = (getState() as RootState).auth.token;

@@ -20,6 +20,7 @@ const OrderPage = () => {
   const { items, totalPrice } = useSelector((state: RootState) => state.cart);
   //const serverApi = process.env.REACT_APP_SERVER_API;
   const serverApi = "http://localhost:5000";
+  
   const dispatch = useDispatch();
 
   const onClickRemove = (item: CartItem) => {
