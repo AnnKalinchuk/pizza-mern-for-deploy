@@ -12,7 +12,7 @@ const uploadFileMiddleware = require('./middleware/uploadFileMiddleware');
 //
 
 const app = express()
-const PORT = config.get('serverPort')
+const PORT = process.env.PORT || config.get('serverPort')
 
 const corsMiddleware = require('./middleware/corsMiddleware')
 
