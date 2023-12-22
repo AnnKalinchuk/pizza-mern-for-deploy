@@ -4,6 +4,9 @@ const config = require('config')
 const authRouter = require('./routes/authRoutes')
 const productRoutes = require('./routes/productRoutes')
 
+require('dotenv').config();
+const dbUrl = process.env.MONGODB_URI;
+
 //firebase
 const uploadFileMiddleware = require('./middleware/uploadFileMiddleware');
 //
@@ -23,13 +26,13 @@ app.use('/api/products',/* uploadFileMiddleware, */productRoutes)
 
 const start = async () => {    
     try {
-        await mongoose.connect(config.get('dbUrl'), { useNewUrlParser: true, useUnifiedTopology: true})
+        await mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true})
       
         app.listen(PORT, () => {
             console.log('server started on port', PORT)
         })
     } catch (err) {
-        console.error(`Error connection to mongo: ${config.get('dbUrl')}`, err)
+        console.error(`Error connection to mongo: ${dbUrl}`, err)
     }
 }
 
