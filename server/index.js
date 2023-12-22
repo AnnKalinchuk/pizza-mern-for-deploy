@@ -12,7 +12,7 @@ const uploadFileMiddleware = require('./middleware/uploadFileMiddleware');
 //
 
 const app = express()
-const PORT = process.env.PORT //|| config.get('serverPort')
+const PORT = process.env.PORT || config.get('serverPort')
 
 const corsMiddleware = require('./middleware/corsMiddleware')
 
@@ -24,7 +24,7 @@ app.use('/api/auth', authRouter)
 app.use('/api/products',/* uploadFileMiddleware, */productRoutes)
 
 
-const start = async () => {    
+/* const start = async () => {    
     try {
         await mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true})
       
@@ -34,6 +34,20 @@ const start = async () => {
     } catch (err) {
         console.error(`Error connection to mongo: ${dbUrl}`, err)
     }
-}
+} */
+
+
+
+app.get('/', (req, res) => {
+  res.send('Hello World')
+})
+
+app.get('/about', (req, res) => {
+  res.send('About route 🎉 ')
+})
+
+app.listen(PORT, () => {
+  console.log(`✅ Server is running on port ${PORT}`);
+})
 
 start()
