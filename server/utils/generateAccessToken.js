@@ -11,6 +11,7 @@ const generateAccessToken = (id, roles) => {
     }
     
     /* return jwt.sign(payload, config.get("jwtSecret"), {expiresIn: "30d"} ) */
+    console.log('jwtSecret',jwtSecret)
     return jwt.sign(payload, jwtSecret, {expiresIn: "30d"} )
 }
 
