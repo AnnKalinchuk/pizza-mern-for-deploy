@@ -55,7 +55,7 @@ const login = async (req, res) => {
         })
     } catch (e) {
         res.status(500).json({
-            message: 'Failed to login'
+            message: `Failed to login, e - ${e}`
         })
     }
 }
