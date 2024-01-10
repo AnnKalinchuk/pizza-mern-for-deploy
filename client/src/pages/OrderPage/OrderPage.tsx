@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import classes from "./orderPage.module.scss";
@@ -15,9 +15,14 @@ import { toUpperCaseFirstLitter } from "../../utils/toUpperCaseFirstLitter";
 import OrderForm from "../../components/OrderForm/OrderForm";
 import { useNavigate } from "react-router-dom";
 
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import storage  from '../../firebase';
+
 const OrderPage = () => {
   const navigate = useNavigate();
   const { items, totalPrice } = useSelector((state: RootState) => state.cart);
+  const [downloadUrlsForFirebaseOrder, setDownloadUrlsForFirebaseOrder] = useState<string[]>([]);
+
   //const serverApi = process.env.REACT_APP_SERVER_API;
   const serverApi = "http://localhost:5000";
   
@@ -46,8 +51,29 @@ const OrderPage = () => {
     if (totalPrice === 0) {
       console.log("totalPrice in order page", totalPrice);
       navigate("/menu");
-    }
-  }, [totalPrice, navigate]);
+      return
+    } 
+    const imageUrls = items.map((item) => {
+      const fileName = item.imgUrl.match(/\/([^\/]+)$/);
+      return fileName ? `images/${fileName[1]}` : null;
+    }).filter((url) => url !== null);
+
+    Promise.all(imageUrls.map((url) => {
+      if (url) {
+        return getDownloadURL(ref(storage, url));
+      }
+    return Promise.resolve(null);
+    }))
+    .then((urls) => {
+      const filteredUrls = urls.filter((url) => url !== null) as string[];
+      setDownloadUrlsForFirebaseOrder(filteredUrls);
+    })
+    .catch((error) => {
+      console.error('Error getting download URLs:', error);
+    });
+  }, [totalPrice, navigate, items]);
+
+  
 
   return (
     <div className={classes.order__wrapper}>
@@ -60,7 +86,7 @@ const OrderPage = () => {
           <div className={classes.title}>Your order</div>
           <div className={classes.order__cart__inner}>
             <div className={classes.cart__items}>
-              {items?.map((item) => (
+              {items?.map((item, index) => (
                 <div className={classes.cart__item} key={item.id + item.price}>
                   <button
                     className={classes.btn__close}
@@ -71,11 +97,8 @@ const OrderPage = () => {
                   <div className={classes.cart__item__content}>
                     <div className={classes.item__image__block}>
                       <img
-                        src={`${serverApi}${item.imgUrl.replace(
-                          "uploads\\",
-                          "/uploads/"
-                        )}`}
-                        alt="product_img"
+                        src={downloadUrlsForFirebaseOrder[index]}
+                        alt={`product_img_${index}`}
                       />
                     </div>
                     <div className={classes.item__info}>
