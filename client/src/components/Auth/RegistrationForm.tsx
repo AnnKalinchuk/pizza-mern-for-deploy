@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { setCredentials } from '../../store/slices/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { changeStatusOnLogin } from '../../store/slices/authStatusSlice';
+import { closeModal } from '../../store/slices/modalSlice';
 
 export interface IRegisterFormState  {
     email:string,
@@ -65,6 +66,7 @@ const RegistrationForm: FC = () => {
     useEffect(() => {
         if(registrationSuccess) {
             navigate('/home');
+            dispatch(closeModal());
         }
     }, [registrationSuccess])
 

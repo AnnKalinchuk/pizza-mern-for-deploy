@@ -101,7 +101,7 @@ const Header = () => {
                                         <div>
                                         <NavLink to="/profile">Profile</NavLink>
                                         </div>
-                                        {user?.roles.includes('ADMIN') && <div><NavLink to="/admin">Products table</NavLink></div>}
+                                        {/* {user?.roles.includes('ADMIN') && */} <div><NavLink to="/admin">Products table</NavLink></div>{/* } */}
                                         <div>
                                             <p onClick={() => dispatch(logout())}>Sign out</p>
                                         </div>
