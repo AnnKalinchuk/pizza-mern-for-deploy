@@ -81,8 +81,8 @@ const register = async (req, res) => {
 
         const hashPassword = await bcrypt.hash(password, 8)
         const userRole = await Role.findOne({value: "USER"})
-        //const user = new User({email, password: hashPassword, name, roles:[userRole.value]})
-        const user = new User({email, password: hashPassword, name, roles:[userRole.value, "ADMIN"]})
+        const user = new User({email, password: hashPassword, name, roles:[userRole.value]})
+        //const user = new User({email, password: hashPassword, name, roles:[userRole.value, "ADMIN"]})
 
         await user.save()
 

@@ -15,7 +15,7 @@ const uploadFileMiddleware = require('../middleware/uploadFileMiddleware');
 
 //router.get('/admin', checkAuth, productControllers.getAll)
 
-router.post('/', /* productCreateValidation, */ /* roleMiddleware(['ADMIN']), *//*без firebase  upload.single('image') след строчка с firebase*/ uploadFileMiddleware, productControllers.createProduct)
+router.post('/', /* productCreateValidation, */ roleMiddleware(['ADMIN']),/*без firebase  upload.single('image') след строчка с firebase*/ uploadFileMiddleware, productControllers.createProduct)
 router.get('/', paginatedResults(Product), productControllers.getAllProducts)
 router.get('/:id', productControllers.getProductById)
 router.delete('/:id', roleMiddleware(['ADMIN']), productControllers.removeProduct)
