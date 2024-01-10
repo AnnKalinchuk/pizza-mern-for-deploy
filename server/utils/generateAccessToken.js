@@ -1,5 +1,8 @@
 const jwt = require('jsonwebtoken');
-const config = require('config')
+//const config = require('config')
+
+require('dotenv').config();
+const jwtSecret = process.env.JWT_SECRET
 
 const generateAccessToken = (id, roles) => {
     const payload = {
@@ -7,7 +10,8 @@ const generateAccessToken = (id, roles) => {
         roles
     }
     
-    return jwt.sign(payload, config.get("jwtSecret"), {expiresIn: "30d"} )
+    /* return jwt.sign(payload, config.get("jwtSecret"), {expiresIn: "30d"} ) */
+    return jwt.sign(payload, jwtSecret, {expiresIn: "30d"} )
 }
 
 module.exports = generateAccessToken

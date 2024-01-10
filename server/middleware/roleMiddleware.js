@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
-const config = require('config')
+//const config = require('config')
+require('dotenv').config();
+const jwtSecret = process.env.JWT_SECRET
 
 module.exports = function(roles) {
     return function(req, res, next) {
@@ -13,7 +15,8 @@ module.exports = function(roles) {
                 return res.status(403).json({message: "User is not authorized"})
             }
             
-            const {roles : userRoles} = jwt.verify(token, config.get("jwtSecret"))
+            //const {roles : userRoles} = jwt.verify(token, config.get("jwtSecret"))
+            const {roles : userRoles} = jwt.verify(token, jwtSecret)
 
             let hasRole = false
             userRoles.forEach(role => {
